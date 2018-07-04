@@ -11,12 +11,10 @@ export default async ({ hemera, pInsert, pool, redisClient }) => {
     //in seconds (Total seconds since 1970/01/01)
 
     //insert into postgres
-    await pool.query("INSERT INTO members.registered_members VALUES ($1,$2)", [
-      address,
-      fname,
-      mname,
-      lname
-    ])
+    await pool.query(
+      "INSERT INTO members.registered_members VALUES ($1,$2,$3,$4)",
+      [address, fname, mname, lname]
+    )
 
     //insert into redis hash
     await hset("registered-members", address, timestamp)
