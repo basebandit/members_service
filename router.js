@@ -6,7 +6,7 @@ export default async (...ops) => {
   const { create_user, fetch_user } = await resolvers(...ops)
   const router = {
     //member actions
-    members: [
+    "members": [
       {
         cmd: "create",
         resolver: create_user,
