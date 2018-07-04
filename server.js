@@ -6,6 +6,7 @@ import redis from "redis"
 import db from "./db"
 import dotenv from "dotenv"
 import router from "./router"
+import cache from "./cache"
 
 dotenv.config()
 
@@ -32,7 +33,8 @@ const pool = new pg.Pool({
 })
 
 const hemera = new Hemera(nats, {
-  logLevel: "silent"
+  logLevel: "silent",
+  tag: "rmbr"
 })
 
 hemera.use(HemeraJoi)
@@ -57,6 +59,7 @@ const start = async () => {
     })
   )
   await db(locals)
+  await cache(locals)
 }
 
 start()
