@@ -21,7 +21,7 @@ export default async ({ hemera, pInsert, pool, redisClient }) => {
 
     return timestamp //time user was registered
   }
-  //fetch user address and timestamp from redis hash set
+  //fetch user timestamp from redis hash set using address as key
   const fetch_user = async ({ address }) =>
     await hget("registered-members", address)
 
